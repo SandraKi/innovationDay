@@ -1,8 +1,8 @@
-import { ZodObject, ZodRawShape } from "zod"
+import { ZodObject, ZodRawShape } from 'zod'
 
 export const validatePayload = <T extends ZodRawShape>(
   payload: unknown,
-  schema: ZodObject<T>,
+  schema: ZodObject<T>
 ) => {
   try {
     return { data: schema.parse(payload), error: null }

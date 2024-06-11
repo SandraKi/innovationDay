@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react'
 
-import * as Icons from "@/icons"
+import * as Icons from '@/icons'
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   find: string

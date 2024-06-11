@@ -1,9 +1,9 @@
-import { GetRedirectDocument } from "@/types/gql/graphql"
-import { request } from "@/cms"
+import { GetRedirectDocument } from '@/types/gql/graphql'
+import { request } from '@/cms'
 
 export const getRedirect = async ({
   pathname,
-  locale,
+  locale
 }: {
   pathname: string
   locale: string
@@ -11,7 +11,7 @@ export const getRedirect = async ({
   const localeAndPathname = `/${locale}${pathname}`
   const data = await request({
     query: GetRedirectDocument,
-    variables: { pathname, localeAndPathname },
+    variables: { pathname, localeAndPathname }
   })
 
   if (!data) {

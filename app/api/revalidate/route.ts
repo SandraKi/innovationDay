@@ -1,20 +1,20 @@
-import { revalidateTag } from "next/cache"
+import { revalidateTag } from 'next/cache'
 
-import { PayloadSchema } from "./schema"
-import { NextResponse } from "next/server"
+import { PayloadSchema } from './schema'
+import { NextResponse } from 'next/server'
 
 const validateAuth = (request: Request) => {
-  const basicAuth = request.headers.get("authorization")
+  const basicAuth = request.headers.get('authorization')
 
   if (!basicAuth) {
     return false
   }
 
-  const authValue = basicAuth.split(" ")[1]
+  const authValue = basicAuth.split(' ')[1]
 
-  const [user, password] = Buffer.from(authValue, "base64")
+  const [user, password] = Buffer.from(authValue, 'base64')
     .toString()
-    .split(":")
+    .split(':')
 
   const validUser = process.env.NEXT_REVALIDATE_TAG_WEBHOOK_USER
   const validPassword = process.env.NEXT_REVALIDATE_TAG_WEBHOOK_PW
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
   const isAuthorized = validateAuth(request)
 
   if (!isAuthorized) {
-    return new Response("Unauthorized", { status: 401 })
+    return new Response('Unauthorized', { status: 401 })
   }
 
   const body = await request.json()
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     data = PayloadSchema.parse(body)
   } catch (error) {
     return new Response(`Invalid request body ${JSON.stringify(error)}`, {
-      status: 400,
+      status: 400
     })
   }
 

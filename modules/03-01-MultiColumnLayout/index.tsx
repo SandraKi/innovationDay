@@ -1,26 +1,26 @@
-import { MultiColumnLayoutFragment } from "@/types/gql/graphql"
+import { MultiColumnLayoutFragment } from '@/types/gql/graphql'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-import Frame from "@/components/Frame"
-import Headline from "@/components/Headline"
-import Paragraph from "@/components/Paragraph"
-import Reveal from "@/components/Reveal"
-import Image from "next/image"
-import ActionBar from "@/components/ActionBar"
+import Frame from '@/components/Frame'
+import Headline from '@/components/Headline'
+import Paragraph from '@/components/Paragraph'
+import Reveal from '@/components/Reveal'
+import Image from 'next/image'
+import ActionBar from '@/components/ActionBar'
 
 const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
   columns,
   layout,
   columnAlignment,
-  alignment,
+  alignment
 }): JSX.Element => {
-  const hasUniformAlignment = alignment === "uniformLayout"
+  const hasUniformAlignment = alignment === 'uniformLayout'
 
   const getColumnStart = (index: number) => ({
-    "lg:col-start-1": index === 0 && hasUniformAlignment,
-    "lg:col-start-2": index === 1 && hasUniformAlignment,
-    "lg:col-start-3": index === 2 && hasUniformAlignment,
+    'lg:col-start-1': index === 0 && hasUniformAlignment,
+    'lg:col-start-2': index === 1 && hasUniformAlignment,
+    'lg:col-start-3': index === 2 && hasUniformAlignment
   })
 
   const hasContent = (index: number) => {
@@ -29,7 +29,7 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
       hasImage: !!column.image,
       hasHeadline: column.headline?.length !== 0,
       hasSubheadline: !!column.subheadline,
-      hasParagraph: !!column.paragraph,
+      hasParagraph: !!column.paragraph
     }
   }
 
@@ -60,38 +60,38 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
     const columnHasOnlyAction =
       !hasImage && !hasHeadline && !hasSubheadline && !hasParagraph
     if (columnHasHeadlineAndAction || columnHasOnlyAction) {
-      return "mt-6"
+      return 'mt-6'
     }
   }
 
   const getImageAspectRatio = () => ({
-    "aspect-[2/1]":
+    'aspect-[2/1]':
       columns.length === 1 || (columns.length === 2 && !isTwoColumnsSquare),
-    "aspect-[4/3] lg:aspect-[1/1]": columns.length === 2 && isTwoColumnsSquare,
-    "aspect-[4/3]": columns.length === 3,
+    'aspect-[4/3] lg:aspect-[1/1]': columns.length === 2 && isTwoColumnsSquare,
+    'aspect-[4/3]': columns.length === 3
   })
 
   const getImageKey = () => {
     if (columns.length === 1) {
-      return "one_column"
+      return 'one_column'
     }
     if (columns.length === 2 && !isTwoColumnsSquare) {
-      return "two_columns"
+      return 'two_columns'
     }
     if (columns.length === 2 && isTwoColumnsSquare) {
-      return "two_columns_square"
+      return 'two_columns_square'
     }
     if (columns.length === 3) {
-      return "three_columns"
+      return 'three_columns'
     }
-    return "image"
+    return 'image'
   }
 
   const imageKey = getImageKey()
 
   const renderImage = (
-    column: MultiColumnLayoutFragment["columns"][0],
-    index: number,
+    column: MultiColumnLayoutFragment['columns'][0],
+    index: number
   ) => {
     const image = column[imageKey]?.responsiveImage
 
@@ -102,19 +102,19 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
     return (
       <div
         className={cn(
-          "relative w-full lg:row-start-1",
+          'relative w-full lg:row-start-1',
           {
-            "lg:row-start-1": hasUniformAlignment,
-            "mb-6": !isTwoColumnsSquare,
+            'lg:row-start-1': hasUniformAlignment,
+            'mb-6': !isTwoColumnsSquare
           },
           getColumnStart(index),
-          getImageAspectRatio(),
+          getImageAspectRatio()
         )}
       >
         <Image
           src={image}
           sizes={image.sizes}
-          alt={image.alt || image.title || ""}
+          alt={image.alt || image.title || ''}
           fill
         />
       </div>
@@ -124,25 +124,25 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
   return (
     <Frame layout={layout[0]}>
       <div
-        className={cn("grid gap-x-12 gap-y-11 lg:gap-y-0", {
-          "lg:grid-flow-col lg:grid-rows-[auto,auto,auto,auto]":
+        className={cn('grid gap-x-12 gap-y-11 lg:gap-y-0', {
+          'lg:grid-flow-col lg:grid-rows-[auto,auto,auto,auto]':
             hasUniformAlignment,
-          "lg:grid-cols-1": columns.length === 1,
-          "lg:grid-cols-2": columns.length === 2,
-          "lg:grid-cols-3": columns.length === 3,
-          "lg:auto-cols-fr lg:grid-flow-col":
+          'lg:grid-cols-1': columns.length === 1,
+          'lg:grid-cols-2': columns.length === 2,
+          'lg:grid-cols-3': columns.length === 3,
+          'lg:grid-flow-col lg:auto-cols-fr':
             columns.length > 1 && !hasUniformAlignment,
-          "justify-items-end":
-            columns.length === 1 && columnAlignment === "right",
+          'justify-items-end':
+            columns.length === 1 && columnAlignment === 'right'
         })}
       >
         {columns.map((column, index) => (
           <div
             key={index}
             className={cn({
-              "lg:contents": columns.length > 1 && hasUniformAlignment,
-              "max-w-[911px]":
-                columns.length === 1 && columnAlignment !== "full",
+              'lg:contents': columns.length > 1 && hasUniformAlignment,
+              'max-w-[911px]':
+                columns.length === 1 && columnAlignment !== 'full'
             })}
           >
             {column[imageKey]?.responsiveImage && renderImage(column, index)}
@@ -152,14 +152,14 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
                   <Headline
                     key={headline.id}
                     className={cn(
-                      "mb-6 lg:row-start-2",
+                      'mb-6 lg:row-start-2',
                       {
-                        "lg:row-start-2": hasUniformAlignment,
+                        'lg:row-start-2': hasUniformAlignment
                       },
-                      getColumnStart(index),
+                      getColumnStart(index)
                     )}
                     text={headline.text}
-                    appearance={headline.appearance || ""}
+                    appearance={headline.appearance || ''}
                   />
                 )
               })}
@@ -168,20 +168,20 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
                 text={column.subheadline}
                 appearance="4"
                 className={cn(
-                  "mb-12 text-gray-800 dark:!text-white",
+                  'text-gray-800 dark:!text-white mb-12',
                   {
-                    "lg:row-start-3": hasUniformAlignment,
+                    'lg:row-start-3': hasUniformAlignment
                   },
-                  getColumnStart(index),
+                  getColumnStart(index)
                 )}
               />
             )}
             <div
               className={cn(
                 {
-                  "lg:row-start-4": hasUniformAlignment,
+                  'lg:row-start-4': hasUniformAlignment
                 },
-                getColumnStart(index),
+                getColumnStart(index)
               )}
             >
               {column.paragraph && (
@@ -189,8 +189,8 @@ const MultiColumnLayout: React.FC<MultiColumnLayoutFragment> = ({
                   <Paragraph
                     text={column.paragraph.text}
                     size="3"
-                    className={cn("text-gray-600 dark:!text-gray-200", {
-                      "mb-12": column.actions.length > 0,
+                    className={cn('text-gray-600 dark:!text-gray-200', {
+                      'mb-12': column.actions.length > 0
                     })}
                   />
                 </Reveal>

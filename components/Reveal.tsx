@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import { useRef } from "react"
-import { Slot } from "@radix-ui/react-slot"
+import { useRef } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 export interface Props {
   children: React.ReactNode
@@ -19,9 +19,9 @@ const Reveal = ({ children }: Props) => {
   return (
     <Slot
       ref={ref}
-      className={cn("delay-200", {
-        "opacity-0": !isVisible,
-        "animate-fade-in-up": isVisible,
+      className={cn('delay-200', {
+        'opacity-0': !isVisible,
+        'animate-fade-in-up': isVisible
       })}
     >
       {children}

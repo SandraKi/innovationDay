@@ -1,14 +1,14 @@
-import createMiddleware from "next-intl/middleware"
-import { NextRequest, NextResponse } from "next/server"
+import createMiddleware from 'next-intl/middleware'
+import { NextRequest, NextResponse } from 'next/server'
 
-import { getRedirect } from "@/cms/redirects"
+import { getRedirect } from '@/cms/redirects'
 
-import { locales, defaultLocale } from "@/i18n/config"
+import { locales, defaultLocale } from '@/i18n/config'
 
 export async function middleware(request: NextRequest) {
   const redirect = await getRedirect({
     pathname: request.nextUrl.pathname,
-    locale: request.nextUrl.locale,
+    locale: request.nextUrl.locale
   })
 
   if (redirect) {
@@ -19,12 +19,12 @@ export async function middleware(request: NextRequest) {
     locales,
     defaultLocale,
     localeDetection: false,
-    localePrefix: "as-needed",
+    localePrefix: 'as-needed'
   })
 
   return handleI18nRouting(request)
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: ['/((?!api|_next|.*\\..*).*)']
 }

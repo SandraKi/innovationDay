@@ -1,10 +1,10 @@
-import { ActionFragment as Action } from "@/types/gql/graphql"
-import type { Variant, BackgroundColor } from "./Button"
+import { ActionFragment as Action } from '@/types/gql/graphql'
+import type { Variant, BackgroundColor } from './Button'
 
-import Button from "@/components/Button"
-import DynamicLink from "@/components/DynamicLink"
-import Icon from "@/components/Icon"
-import { cn } from "@/lib/utils"
+import Button from '@/components/Button'
+import DynamicLink from '@/components/DynamicLink'
+import Icon from '@/components/Icon'
+import cn from 'classnames'
 
 type Props = {
   actions: Action[]
@@ -16,27 +16,27 @@ type Props = {
 
 const ActionBar: React.FC<Props> = ({
   actions,
-  position = "left",
+  position = 'left',
   stack = false,
   className,
-  children,
+  children
 }): JSX.Element => {
   const $_position = {
-    left: "items-start justify-start",
-    center: "items-center md:justify-center",
-    right: "items-end md:justify-end",
-    between: "justify-between",
+    left: 'items-start justify-start',
+    center: 'items-center md:justify-center',
+    right: 'items-end md:justify-end',
+    between: 'justify-between'
   }[position]
 
   return (
     <div
       className={cn(
-        "flex flex-col items-stretch gap-4 md:flex-wrap md:gap-x-8 md:gap-y-4",
+        'flex flex-col gap-4 md:gap-y-4 md:gap-x-8 md:flex-wrap items-stretch',
         {
-          "md:flex-row": !stack,
+          'md:flex-row': !stack,
           className,
-          $_position,
-        },
+          $_position
+        }
       )}
     >
       {actions.map((action: Action) => {
@@ -50,7 +50,7 @@ const ActionBar: React.FC<Props> = ({
           >
             <DynamicLink
               link={action.link}
-              target={action.link?.isExternalUrl ? "_self" : "_self"}
+              target={action.link?.isExternalUrl ? '_self' : '_self'}
             >
               <>
                 {action.text}

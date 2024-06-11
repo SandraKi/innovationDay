@@ -1,10 +1,10 @@
-import { ActionFragment as Action, LinkFragment } from "@/types/gql/graphql"
+import { ActionFragment as Action, LinkFragment } from '@/types/gql/graphql'
 
-import { createInternalPath } from "@/cms/utils"
+import { createInternalPath } from '@/cms/utils'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-import Link from "next/link"
+import Link from 'next/link'
 
 type Props = {
   link: LinkFragment
@@ -17,13 +17,13 @@ export default function DynamicLink({
   link,
   className,
   children,
-  target,
+  target
 }: Props) {
   if (link.isExternalUrl && link.href) {
     return (
       <a
         href={link.href}
-        target={target || "_blank"}
+        target={target || '_blank'}
         rel="noreferrer"
         className={cn(className)}
       >
@@ -37,10 +37,10 @@ export default function DynamicLink({
   }
 
   const path = createInternalPath(link.path)
-  const href = `${path}${link.anchor ? link.anchor : ""}`
+  const href = `${path}${link.anchor ? link.anchor : ''}`
 
   return (
-    <Link href={href} target={target || "_top"} className={cn(className)}>
+    <Link href={href} target={target || '_top'} className={cn(className)}>
       {children}
     </Link>
   )

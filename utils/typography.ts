@@ -1,7 +1,7 @@
 export const calculateFontSize = ({
   minFontSize,
   maxFontSize,
-  maxPageWidth,
+  maxPageWidth
 }: {
   minFontSize: number
   maxFontSize: number
@@ -18,7 +18,7 @@ export const calculateLetterSpacing = ({
   maxPercentage,
   maxFontSize,
   maxPageWidth,
-  isNegativeSpacing = false,
+  isNegativeSpacing = false
 }: {
   minPercentage: number
   minFontSize: number
@@ -43,7 +43,7 @@ export const calculateLineHeight = ({
   minFontSize,
   maxLineHeight,
   maxFontSize,
-  maxPageWidth,
+  maxPageWidth
 }: {
   minLineHeight: number
   minFontSize: number
@@ -65,7 +65,7 @@ export const createDynamicFontStyle = ({
   maxLineHeight,
   maxPageWidth,
   fontWeight,
-  isNegativeSpacing = false,
+  isNegativeSpacing = false
 }: {
   maxFontSize: number
   minFontSize: number
@@ -82,12 +82,12 @@ export const createDynamicFontStyle = ({
     lineHeight: string
     letterSpacing: string
     fontWeight: string | number
-  }>,
+  }>
 ] => [
   calculateFontSize({
     minFontSize,
     maxFontSize,
-    maxPageWidth,
+    maxPageWidth
   }),
   {
     letterSpacing: calculateLetterSpacing({
@@ -96,15 +96,15 @@ export const createDynamicFontStyle = ({
       maxFontSize,
       maxPercentage,
       maxPageWidth,
-      isNegativeSpacing,
+      isNegativeSpacing
     }),
     lineHeight: calculateLineHeight({
       minLineHeight,
       minFontSize,
       maxLineHeight,
       maxFontSize,
-      maxPageWidth,
+      maxPageWidth
     }),
-    fontWeight,
-  },
+    fontWeight
+  }
 ]

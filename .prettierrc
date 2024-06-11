@@ -1,8 +1,8 @@
 {
+  "trailingComma": "none",
   "tabWidth": 2,
   "semi": false,
+  "singleQuote": true,
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "ignore",
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["clsx", "cva", "cn"]
+  "htmlWhitespaceSensitivity": "ignore"
 }

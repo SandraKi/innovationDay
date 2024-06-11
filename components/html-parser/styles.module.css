@@ -1,9 +1,9 @@
 .container a {
-  @apply relative inline-block;
+  @apply inline-block relative;
 }
 
 .container a:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(1);
@@ -21,7 +21,7 @@
 }
 
 .container a:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -39,10 +39,10 @@
 }
 
 .container ol {
-  @apply my-4 ml-[1em] list-outside list-decimal;
+  @apply list-decimal list-outside ml-[1em] my-4;
 }
 .container ul {
-  @apply my-4 ml-[1em] list-outside list-[square];
+  @apply list-[square] list-outside ml-[1em] my-4;
 }
 .container ul li::marker {
   @apply !text-primary1;

@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import { VideoFragment } from "@/types/gql/graphql"
+import { VideoFragment } from '@/types/gql/graphql'
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from 'react'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-import Icon from "@/components/Icon"
+import Icon from '@/components/Icon'
 
 type Props = {
   video: VideoFragment
@@ -23,7 +23,7 @@ const Video = ({
   controls = false,
   loop = true,
   muted = true,
-  className,
+  className
 }: Props) => {
   const src = video.mp4Url
 
@@ -35,19 +35,19 @@ const Video = ({
     if (!autoplay) return
 
     // autoplay background videos need to be created dynamically, otherwise they can't be muted properly
-    const video = document.createElement("video")
+    const video = document.createElement('video')
     video.autoplay = autoplay
     video.loop = loop
     video.muted = muted
     video.controls = autoplay ? controls : isPlaying
-    video.setAttribute("playsinline", "true")
+    video.setAttribute('playsinline', 'true')
     if (className) {
-      video.setAttribute("class", className)
+      video.setAttribute('class', className)
     }
-    const source = document.createElement("source")
+    const source = document.createElement('source')
     if (src) {
       source.src = src
-      source.type = "video/mp4"
+      source.type = 'video/mp4'
       video.appendChild(source)
       videoContainerRef.current?.appendChild(video)
     }
@@ -55,13 +55,13 @@ const Video = ({
 
   useEffect(() => {
     if (videoRef?.current) {
-      videoRef.current.addEventListener("playing", () => {
+      videoRef.current.addEventListener('playing', () => {
         setVideoStatus(true)
       })
-      videoRef.current.addEventListener("pause", () => {
+      videoRef.current.addEventListener('pause', () => {
         setVideoStatus(false)
       })
-      videoRef.current.addEventListener("ended", () => {
+      videoRef.current.addEventListener('ended', () => {
         setVideoStatus(false)
       })
     }
@@ -90,7 +90,7 @@ const Video = ({
       )}
       {!autoplay && !isPlaying && (
         <button
-          className="absolute left-1/2 top-1/2 z-10 flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-accent h-10 w-10 flex items-center justify-center"
           onClick={playVideo}
         >
           <Icon find="play" />

@@ -1,17 +1,17 @@
-import { SiteLocale, PagePathFragment } from "@/types/gql/graphql"
+import { SiteLocale, PagePathFragment } from '@/types/gql/graphql'
 
-import { locales, defaultLocale } from "@/i18n/config"
-import { createInternalPath } from "./utils"
+import { locales, defaultLocale } from '@/i18n/config'
+import { createInternalPath } from './utils'
 
 const baseUrl =
   process.env.NEXT_PUBLIC_BASE_URL || `https://${process.env.VERCEL_URL}`
 
 const hiddenDefaultLocale = (locale: SiteLocale | string) =>
-  locale === defaultLocale ? "" : `/${locale}`
+  locale === defaultLocale ? '' : `/${locale}`
 
 export const createAlternates = ({
   locale,
-  pagePath,
+  pagePath
 }: {
   locale: SiteLocale
   pagePath: PagePathFragment
@@ -28,8 +28,8 @@ export const createAlternates = ({
           const url = `${baseUrl}${hiddenDefaultLocale(lang)}${path}`
           return { ...acc, [lang]: url }
         },
-        { "x-default": baseUrl },
-      ),
-    },
+        { 'x-default': baseUrl }
+      )
+    }
   }
 }

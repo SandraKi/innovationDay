@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import { ReactElement, forwardRef } from "react"
+import { ReactElement, forwardRef } from 'react'
 
-import HtmlParser from "@/components/html-parser"
+import HtmlParser from '@/components/html-parser'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-type HeadlineTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div"
+type HeadlineTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div'
 const isValidTag = (tag: string): tag is HeadlineTag => {
-  return ["h1", "h2", "h3", "h4", "h5", "h6", "div"].includes(tag)
+  return ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div'].includes(tag)
 }
 
 interface Props extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -22,13 +22,13 @@ const Headline = forwardRef<HTMLHeadingElement, Props>(
   (
     {
       text,
-      appearance = "1",
-      tag = "div",
-      font = "primary",
+      appearance = '1',
+      tag = 'div',
+      font = 'primary',
       className,
       ...props
     },
-    ref,
+    ref
   ): ReactElement => {
     const isValid = isValidTag(tag)
     if (!isValid) {
@@ -36,20 +36,20 @@ const Headline = forwardRef<HTMLHeadingElement, Props>(
     }
 
     const fontSize = {
-      1: "text-h1",
-      2: "text-h2",
-      3: "text-h3",
-      4: "text-h4",
-      5: "text-h5",
-      6: "text-h6",
-      deco1: "text-deco1",
-      deco2: "text-deco2",
-      deco3: "text-deco3",
+      1: 'text-h1',
+      2: 'text-h2',
+      3: 'text-h3',
+      4: 'text-h4',
+      5: 'text-h5',
+      6: 'text-h6',
+      deco1: 'text-deco1',
+      deco2: 'text-deco2',
+      deco3: 'text-deco3'
     }[appearance]
 
     const fontFamily = {
-      primary: "font-primary",
-      secondary: "font-secondary",
+      primary: 'font-primary',
+      secondary: 'font-secondary'
     }[font]
 
     const Component = tag
@@ -59,9 +59,9 @@ const Headline = forwardRef<HTMLHeadingElement, Props>(
         <HtmlParser ref={ref} content={text} className="text-balance" />
       </Component>
     )
-  },
+  }
 )
 
-Headline.displayName = "Headline"
+Headline.displayName = 'Headline'
 
 export default Headline

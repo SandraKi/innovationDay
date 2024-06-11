@@ -14,8 +14,8 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "paths": {
       "@/*": ["./*"],
@@ -25,14 +25,14 @@
       "@/icons/*": ["./icons/*"],
       "@/modules/*": ["./modules/*"],
       "@/i18n/*": ["./i18n/*"],
-    },
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/Renderer.jsx",
+    "components/Renderer.jsx"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }

@@ -1,10 +1,10 @@
-import Button from "@/components/Button"
-import Reveal from "@/components/Reveal"
-import RevealText from "@/components/RevealText"
-import Icon from "@/components/Icon"
-import Paragraph from "@/components/Paragraph"
-import Headline from "@/components/Headline"
-import Frame from "@/components/Frame"
+import Button from '@/components/Button'
+import Reveal from '@/components/Reveal'
+import RevealText from '@/components/RevealText'
+import Icon from '@/components/Icon'
+import Paragraph from '@/components/Paragraph'
+import Headline from '@/components/Headline'
+import Frame from '@/components/Frame'
 
 export default function Home() {
   return (
@@ -28,9 +28,9 @@ export default function Home() {
 
       <Frame
         layout={{
-          frame: "default",
-          spaceBefore: "default",
-          spaceAfter: "default",
+          frame: 'default',
+          spaceBefore: 'default',
+          spaceAfter: 'default'
         }}
       >
         <Headline tag="h2" text="Hello world" appearance="1" />
@@ -38,10 +38,10 @@ export default function Home() {
 
       <Frame
         layout={{
-          frame: "default",
-          spaceBefore: "default",
-          spaceAfter: "default",
-          backgroundColor: "bg-primary1 text-secondary1",
+          frame: 'default',
+          spaceBefore: 'default',
+          spaceAfter: 'default',
+          backgroundColor: 'bg-primary1 text-secondary1'
         }}
       >
         <Headline tag="h2" text="Hello world" appearance="1" />

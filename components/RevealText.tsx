@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import { useEffect, useRef } from "react"
-import { Slot } from "@radix-ui/react-slot"
+import { useEffect, useRef } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
-import { SplitText } from "gsap/dist/SplitText"
-import gsap from "gsap"
+import { SplitText } from 'gsap/dist/SplitText'
+import gsap from 'gsap'
 
 export interface Props {
   children: React.ReactNode
@@ -23,15 +23,15 @@ const RevealText = ({ children }: Props) => {
     gsap.registerPlugin(SplitText)
 
     const timeline = gsap.timeline()
-    const split = new SplitText(ref.current, { type: "lines" })
+    const split = new SplitText(ref.current, { type: 'lines' })
 
     timeline.from(split.lines, {
       duration: 0.5,
       opacity: 0,
       rotationX: -120,
       force3D: true,
-      transformOrigin: "top center -150",
-      stagger: 0.1,
+      transformOrigin: 'top center -150',
+      stagger: 0.1
     })
   }, [isVisible])
 
@@ -39,7 +39,7 @@ const RevealText = ({ children }: Props) => {
     <Slot
       ref={ref}
       className={cn({
-        "opacity-0": !isVisible,
+        'opacity-0': !isVisible
       })}
     >
       {children}

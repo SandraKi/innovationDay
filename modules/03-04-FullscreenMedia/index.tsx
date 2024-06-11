@@ -1,14 +1,14 @@
-import ActionBar from "@/components/ActionBar"
-import Frame from "@/components/Frame"
-import Headline from "@/components/Headline"
-import Paragraph from "@/components/Paragraph"
-import VideoUpload from "@/components/VideoUpload"
+import ActionBar from '@/components/ActionBar'
+import Frame from '@/components/Frame'
+import Headline from '@/components/Headline'
+import Paragraph from '@/components/Paragraph'
+import VideoUpload from '@/components/VideoUpload'
 
-import { FullscreenMediaFragment } from "@/types/gql/graphql"
+import { FullscreenMediaFragment } from '@/types/gql/graphql'
 
-import { cn } from "@/lib/utils"
+import cn from 'classnames'
 
-import Image from "next/image"
+import Image from 'next/image'
 
 export default function FullscreenMedia({
   id,
@@ -17,53 +17,55 @@ export default function FullscreenMedia({
   mediaGradient,
   headline,
   paragraph,
-  actions,
+  actions
 }: FullscreenMediaFragment) {
   if (!media) return
 
-  const isFullscreen = layout[0].frame === "full"
+  const isFullscreen = layout[0].frame === 'full'
 
   return (
     <Frame layout={layout[0]} id={id}>
+      (
       <div
-        className={cn("relative h-auto max-h-screen w-full", {
-          "before:absolute before:left-0 before:top-0 before:z-10 before:block before:h-full before:w-full":
-            mediaGradient,
-          "before:bg-black/50": mediaGradient === "dark",
-          "before:bg-white/50": mediaGradient === "light",
-        })}
+        className={cn(
+          'relative w-full aspect-square md:aspect-video max-h-screen',
+          {
+            'before:block before:w-full before:h-full before:absolute before:z-10 before:left-0 before:top-0':
+              mediaGradient,
+            'before:bg-black/50': mediaGradient === 'dark',
+            'before:bg-white/50': mediaGradient === 'light'
+          }
+        )}
       >
         {media.responsiveImage && (
           <Image
             src={media.responsiveImage.src}
             alt=""
-            width={media.responsiveImage.width}
-            height={media.responsiveImage.height}
+            fill
             sizes={
               isFullscreen
-                ? "100vw"
-                : "(max-width: 1279px) 100vw, (max-width: 1439px) 1280px, 1440px"
+                ? '100vw'
+                : '(max-width: 1279px) 100vw, (max-width: 1439px) 1280px, 1440px'
             }
-            className={cn("object-cover", isFullscreen ? "h-screen" : "h-auto")}
+            className="object-cover"
           />
         )}
 
         {media.video && (
           <VideoUpload
-            className={cn(
-              isFullscreen ? "h-auto w-screen" : "aspect-video h-auto w-full",
-            )}
+            className="h-full"
             video={media.video}
             autoplay={false}
           />
         )}
       </div>
+      )
       <Frame
-        className="absolute top-[50%] z-20"
+        className="absolute z-20 top-[50%]"
         layout={{
-          spaceBefore: "none",
-          spaceAfter: "none",
-          frame: isFullscreen ? "default" : "small",
+          spaceBefore: 'none',
+          spaceAfter: 'none',
+          frame: isFullscreen ? 'default' : 'small'
         }}
       >
         <div className="absolute">

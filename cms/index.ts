@@ -1,15 +1,15 @@
-import { print } from "graphql"
+import { print } from 'graphql'
 
-import { createCachingStrategy, formRequestUrl } from "./utils"
+import { createCachingStrategy, formRequestUrl } from './utils'
 
-import { TypedDocumentNode } from "@graphql-typed-document-node/core"
+import { TypedDocumentNode } from '@graphql-typed-document-node/core'
 
 export const request = async <TResult = unknown, TVariables = unknown>({
   query,
   variables,
   isPreview = false,
   revalidate = 3600,
-  tags,
+  tags
 }: {
   query: TypedDocumentNode<TResult, TVariables>
   variables?: TVariables
@@ -25,11 +25,11 @@ export const request = async <TResult = unknown, TVariables = unknown>({
     const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_DATO_CMS_API_TOKEN}`,
-        ...(isPreview && { "X-Include-Drafts": "true" }),
+        ...(isPreview && { 'X-Include-Drafts': 'true' })
       },
-      method: "POST",
+      method: 'POST',
       body,
-      next: createCachingStrategy(isPreview, revalidate, tags),
+      next: createCachingStrategy(isPreview, revalidate, tags)
     })
 
     const { data } = await response.json()
