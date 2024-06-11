@@ -1,0 +1,29 @@
+fragment headline on HeadlineRecord {
+  id
+  text
+  appearance
+  font
+  tag
+}
+
+fragment subline on SublineRecord {
+  id
+  text
+  appearance
+  font
+  tag
+}
+
+fragment paragraph on ParagraphRecord {
+  id
+  text
+  size
+  fontWeight
+}
+
+fragment overline on OverlineRecord {
+  id
+  text
+  size
+  fontWeight
+}

@@ -1,0 +1,32 @@
+# import 'cms/fragments/action.gql'
+# import 'cms/fragments/layout.gql'
+# import 'cms/fragments/typography.gql'
+# import 'cms/fragments/image.gql'
+# import 'cms/fragments/media.gql'
+
+fragment fullscreenMedia on FullscreenMediumRecord {
+  __typename
+  id
+  layout {
+    ...layout
+  }
+  media {
+    id
+    video {
+      ...video
+    }
+    responsiveImage {
+      ...image
+    }
+  }
+  mediaGradient
+  headline {
+    ...headline
+  }
+  paragraph {
+    ...paragraph
+  }
+  actions {
+    ...action
+  }
+}

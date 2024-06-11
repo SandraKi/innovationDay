@@ -1,0 +1,11 @@
+#import './page-path.gql'
+
+fragment link on LinkRecord {
+  anchor
+  href
+  id
+  isExternalUrl
+  path {
+    ...pagePath
+  }
+}

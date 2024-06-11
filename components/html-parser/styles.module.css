@@ -1,0 +1,49 @@
+.container a {
+  @apply relative inline-block;
+}
+
+.container a:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(1);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom left;
+  transition: transform 0.25s ease-in-out;
+}
+
+.container a:hover:after {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+.container a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s 0.25s ease-in-out;
+}
+
+.container a:hover:before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.container ol {
+  @apply my-4 ml-[1em] list-outside list-decimal;
+}
+.container ul {
+  @apply my-4 ml-[1em] list-outside list-[square];
+}
+.container ul li::marker {
+  @apply !text-primary1;
+}

@@ -1,0 +1,20 @@
+fragment layout on LayoutRecord {
+  frame
+  spaceAfter
+  spaceBefore
+  backgroundColor
+}
+
+fragment layoutDefault on LayoutDefaultRecord {
+  frame
+  spaceAfter
+  spaceBefore
+  backgroundColor
+}
+
+fragment layoutFullscreen on LayoutFullscreenRecord {
+  frame
+  spaceAfter
+  spaceBefore
+  backgroundColor
+}

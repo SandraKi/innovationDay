@@ -1,0 +1,21 @@
+fragment pagePath on PageRecord {
+  updatedAt
+  id
+  slug
+  isNavigationPoint
+  parent {
+    updatedAt
+    id
+    slug
+    parent {
+      updatedAt
+      id
+      slug
+      parent {
+        updatedAt
+        id
+        slug
+      }
+    }
+  }
+}

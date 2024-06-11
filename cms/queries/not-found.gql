@@ -1,0 +1,18 @@
+# import 'cms/fragments/action.gql'
+# import 'cms/fragments/layout.gql'
+# import 'cms/fragments/typography.gql'
+
+query GetNotFound($locale: SiteLocale) {
+  notFound(locale: $locale) {
+    id
+    headline {
+      ...headline
+    }
+    description {
+      ...paragraph
+    }
+    actions {
+      ...action
+    }
+  }
+}

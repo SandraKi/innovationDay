@@ -1,0 +1,65 @@
+# import 'cms/fragments/action.gql'
+# import 'cms/fragments/layout.gql'
+# import 'cms/fragments/typography.gql'
+# import 'cms/fragments/image.gql'
+
+fragment multiColumnLayout on MulticolumnLayoutRecord {
+  id
+  __typename
+  layout {
+    ...layoutDefault
+  }
+  alignment
+  columnAlignment
+  columns {
+    id
+    actions {
+      ...action
+    }
+    headline {
+      ...headline
+    }
+    paragraph {
+      ...paragraph
+    }
+    subheadline
+    image {
+      id
+      responsiveImage {
+        ...image
+      }
+    }
+    one_column: image {
+      responsiveImage(
+        sizes: "(max-width: 1023px) 100vw, 912px"
+        imgixParams: { ar: "2:1", fit: crop }
+      ) {
+        ...image
+      }
+    }
+    three_columns: image {
+      responsiveImage(
+        sizes: "(max-width: 1023px) 100vw, 384px"
+        imgixParams: { ar: "4:3", fit: crop }
+      ) {
+        ...image
+      }
+    }
+    two_columns_square: image {
+      responsiveImage(
+        sizes: "(max-width: 1023px) 100vw, 696px"
+        imgixParams: { ar: "1:1", fit: crop }
+      ) {
+        ...image
+      }
+    }
+    two_columns: image {
+      responsiveImage(
+        sizes: "(max-width: 1023px) 100vw, 696px"
+        imgixParams: { ar: "2:1", fit: crop }
+      ) {
+        ...image
+      }
+    }
+  }
+}

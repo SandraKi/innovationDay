@@ -1,0 +1,17 @@
+#import './link.gql'
+
+fragment action on ActionRecord {
+  id
+  text
+  variant
+  color
+  isLeadingIcon
+  icon {
+    size
+    name
+    id
+  }
+  link {
+    ...link
+  }
+}

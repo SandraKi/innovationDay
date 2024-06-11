@@ -1,0 +1,10 @@
+query getRedirect($pathname: String, $localeAndPathname: String) {
+  redirect(filter: { from: { eq: $pathname } }) {
+    to
+    isTemporaryRedirect
+  }
+  localizedRedirect: redirect(filter: { from: { eq: $localeAndPathname } }) {
+    to
+    isTemporaryRedirect
+  }
+}

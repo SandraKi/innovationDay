@@ -1,0 +1,13 @@
+# import '../fragments/page-path.gql'
+
+query CheckIfPageExists($locale: SiteLocale, $slug: String) {
+  page(locale: $locale, filter: { slug: { eq: $slug } }) {
+    id
+  }
+}
+
+query GetPageStub($locale: SiteLocale, $slug: String) {
+  page(locale: $locale, filter: { slug: { eq: $slug } }) {
+    ...pagePath
+  }
+}
