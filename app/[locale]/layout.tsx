@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang={locale} className={`${fontPrimary.variable}`}>
       <body className="font-primary">
-        <BackgroundCanvas />
+        {/* <BackgroundCanvas /> */}
         <div className="absolute z-10 top-0 left-0 size-full pointer-events-none">
           {children}
         </div>
