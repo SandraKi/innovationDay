@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
     "concurrently": "^8.2.2",
+    "flubber": "^0.4.2",
     "framer-motion": "^11.2.10",
     "graphql": "^16.8.1",
     "gsap": "npm:@gsap/business",
